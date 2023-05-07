@@ -1,60 +1,28 @@
----
-title: Home
-layout: default
-background: '/img/bg-index.jpg'
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Minecraft Overviewer</title>
 
-<!-- Home Intro
-================================================== -->
-{% if page.url == "/" %} 
-<div class="rounded mb-5 hero">
-  <div class="row align-items-center justify-content-between">
-    <div class="col-md-6">
-      <h1 class="font-weight-bold mb-4 serif-font">SusoDiz</h1>
-      <p class="lead mb-4">SusoDiz</p>
-      <a href="{{site.baseurl}}/about" class="btn btn-dark text-white px-5 btn-lg">Info.</a>
-    </div>
-    <div class="col-md-6 text-right pl-0 pl-lg-4">
-      <img class="intro" height="500" src="{{site.baseurl}}/assets/images/proximamente.png">      
-    </div>
-  </div>
-</div>
-{% endif %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Minecraft-Overviewer 0.19.9 (6ffbe0f)" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
-<!-- Featured
-================================================== -->
-<section class="row">
-  {% for post in site.posts %}
-      {% if post.featured == true %}
-          <div class="col-md-4 mb-5">
-          {% include postbox.html %}
-          </div>
-      {% endif %}
-  {% endfor %}
-  </div>
-</section>
+    <script type="text/javascript" src="overviewerConfig.js"></script>
+    <script type="text/javascript" src="overviewer.js"></script>
+    <script type="text/javascript" src="baseMarkers.js"></script>
 
-<!-- Posts List with Sidebar (except featured)
-================================================== -->
-<section class="row">
-  <div class="col-sm-8">
-    <div class="row">
-      {% for post in paginator.posts %}
-      {% unless post.featured == true %}
-      <div class="col-md-6 mb-5">
-        {% include postbox.html %}
-      </div>
-      {% endunless %}
-      {% endfor %}
-    </div>
-    <!-- Pagination -->
-    <div class="bottompagination">
-      <span class="navigation" role="navigation">
-          {% include pagination.html %}
-      </span>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    {% include sidebar.html %}
-  </div>
-</section>
+    <link rel="stylesheet" href="leaflet.css" />
+    <script src="leaflet.js"></script>
+    <link rel="stylesheet" href="overviewer.css" type="text/css" />
+  </head>
+
+  <!-- Generated at: Sun, 07 May 2023 17:05:17 Hora de verano GMT -->
+  <body onload="overviewer.util.initialize()">
+    <noscript style="color: white; background-color: black">
+      If you can see this message, there is likely a problem loading the
+      Overviewer JavaScript components. Check the JavaScript console for error
+      messages.
+    </noscript>
+    <div id="mcmap"></div>
+  </body>
+</html>
