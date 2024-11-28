@@ -3,57 +3,158 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
+    <title>Formulario de Usuario</title>
     <style>
         body {
-            background-color: #333;
+            font-family: Arial, sans-serif;
+            margin: 20px;
             color: white;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        strong {
-            display: block;
-            margin: 0 auto;
-            width: 50%;
-            text-align: center;
-            margin-bottom: 10px;
+            background-color: black;
         }
 
         input {
-            display: block;
-            margin: 0 auto;
-            width: 50%;
-            padding: 10px;
-            margin-bottom: 10px;
+            width: 75%;
         }
+
+        .form-section {
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        p {
+            font-size: xx-large;
+        }
+
+        .form-field {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campo-dni {
+            display: flex;
+        }
+
+        .form-field .introduce-dni {
+            width: 85%;
+        }
+
+        .aficiones {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        
     </style>
-    <h1>Formulario</h1>
-    <br>
-    <strong>tel</strong>
-    <input type="tel" name="" id="" placeholder="Telefono">
-    <br>
-    <strong>email</strong>
-    <input type="email" name="" id="" placeholder="email">
-    <br>
-    <strong>number</strong>
-    <input type="number" name="" id="" placeholder="number">
-    <br>
-    <strong>password</strong>
-    <input type="password" name="" id="" placeholder="password">
-    <br>
-    <strong>url</strong>
-    <input type="url" name="" id="" placeholder="url">
-    <br>
-    <strong>search</strong>
-    <input type="search" name="" id="" placeholder="search">
-    <br>
+</head>
+
+<body>
+    <form action="https://www.w3schools.com/action_page.php">
+
+        <p>Datos Usuario</p>
+        <section class="form-section">
+            <section class="form-field">
+                <label for="username">Nombre de Usuario:</label>
+                <input type="text" id="username" name="username" placeholder="UserName">
+            </section>
+            <section class="form-field">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password">
+                <input type="checkbox" onclick="showPassword()"> Mostrar Contraseña
+            </section>
+        </section>
+
+        <p>Datos Personales</p>
+        <section class="form-section">
+            <section class="form-field">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name">
+            </section>
+            <section class="form-field">
+                <label for="surname">Apellidos:</label>
+                <input type="text" id="surname" name="surname">
+            </section>
+            <section class="form-field">
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" name="phone" placeholder="+34)922123123">
+            </section>
+            <section class="form-field">
+                <label for="postalcode">Código Postal:</label>
+                <input type="text" id="postalcode" name="postalcode">
+            </section>
+            <section class="form-field">
+                    <label for="dni">DNI/NIE:</label>
+                    <div class="campo-dni">
+                    <div class="select-dni">
+                        <select name="dni_type" id="dni_type">
+                            <option value="none" selected>---</option>
+                            <option value="dni">DNI</option>
+                            <option value="nie">NIE</option>
+                        </select>
+                    </div>
+                    <div class="introduce-dni">
+                        <input type="text" id="dni" name="dni">
+                    </div>
+                </div>
+            </section>
+            <section class="form-field">
+                <label for="birthyear">Año de Nacimiento:</label>
+                <input type="date" id="birthyear" name="birthyear">
+                </select>
+            </section>
+            
+        </section>
+
+        <section class="form-field">
+            <label>Crear cuenta como:</label>
+            <input type="radio" id="particular" name="account_type" value="particular">
+            <label for="particular">Particular</label>
+            <input type="radio" id="empresa" name="account_type" value="empresa">
+            <label for="empresa">Empresa</label>
+        </section>
+
+        <label>Elige tus aficiones:</label>
+        <section class="aficiones">
+            <input type="checkbox" id="musica" name="hobbies" value="musica">
+            <label for="musica">Música</label>
+            <input type="checkbox" id="deporte" name="hobbies" value="deporte">
+            <label for="deporte">Deporte</label>
+            <input type="checkbox" id="videojuegos" name="hobbies" value="videojuegos">
+            <label for="videojuegos">Videojuegos</label>
+            <input type="checkbox" id="manualidades" name="hobbies" value="manualidades">
+            <label for="manualidades">Manualidades</label>
+            <input type="checkbox" id="artes" name="hobbies" value="artes">
+            <label for="artes">Artes</label>
+            <input type="checkbox" id="lectura" name="hobbies" value="lectura">
+            <label for="lectura">Lectura</label>
+        </section>
+
+        <p>Datos Publicación</p>
+        <section class="form-section">
+            <section class="form-field">
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" maxlength="15">
+            </section>
+            <section class="form-field">
+                <label for="description">Descripción:</label>
+                <textarea id="description" name="description" maxlength="120"></textarea>
+            </section>
+        </section>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        function showPassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>
