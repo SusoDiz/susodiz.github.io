@@ -2,159 +2,121 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Formulario de Usuario</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            color: white;
-            background-color: black;
-        }
-
-        input {
-            width: 75%;
-        }
-
-        .form-section {
-            margin-bottom: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        p {
-            font-size: xx-large;
-        }
-
-        .form-field {
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .campo-dni {
-            display: flex;
-        }
-
-        .form-field .introduce-dni {
-            width: 85%;
-        }
-
-        .aficiones {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario DEW UT04-01</title>
+    <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-    <form action="https://www.w3schools.com/action_page.php">
-
-        <p>Datos Usuario</p>
-        <section class="form-section">
-            <section class="form-field">
-                <label for="username">Nombre de Usuario:</label>
-                <input type="text" id="username" name="username" placeholder="UserName">
-            </section>
-            <section class="form-field">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password">
-                <input type="checkbox" onclick="showPassword()"> Mostrar Contraseña
-            </section>
-        </section>
-
-        <p>Datos Personales</p>
-        <section class="form-section">
-            <section class="form-field">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name">
-            </section>
-            <section class="form-field">
-                <label for="surname">Apellidos:</label>
-                <input type="text" id="surname" name="surname">
-            </section>
-            <section class="form-field">
-                <label for="phone">Teléfono:</label>
-                <input type="text" id="phone" name="phone" placeholder="+34)922123123">
-            </section>
-            <section class="form-field">
-                <label for="postalcode">Código Postal:</label>
-                <input type="text" id="postalcode" name="postalcode">
-            </section>
-            <section class="form-field">
-                    <label for="dni">DNI/NIE:</label>
-                    <div class="campo-dni">
-                    <div class="select-dni">
-                        <select name="dni_type" id="dni_type">
-                            <option value="none" selected>---</option>
-                            <option value="dni">DNI</option>
-                            <option value="nie">NIE</option>
-                        </select>
+    <main>
+        <form id="formulario-registro" action="https://www.w3schools.com/action_page.php/" method="post">
+            <fieldset class="formulario-contenedor">
+                <section>
+                    <legend>Datos Usuario</legend>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="nombre-usuario">Nombre de Usuario</label>
+                            <input type="text" id="nombre-usuario" name="nombre-usuario" placeholder="UserName" required />
+                        </div>
+                        <div class="grupo">
+                            <label for="contrasena">Contraseña</label>
+                            <input type="password" id="contrasena" name="contrasena" placeholder="Introduce Contraseña" required />
+                            <div class="mostrar-contrasena">
+                                <input type="checkbox" id="mostrar-contrasena" name="mostrar-contrasena" />
+                                <label for="mostrar-contrasena">Mostrar Contraseña</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="introduce-dni">
-                        <input type="text" id="dni" name="dni">
+                </section>
+
+                <section>
+                    <legend>Datos Personales</legend>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required />
+                        </div>
+                        <div class="grupo">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required />
+                        </div>
                     </div>
-                </div>
-            </section>
-            <section class="form-field">
-                <label for="birthyear">Año de Nacimiento:</label>
-                <input type="date" id="birthyear" name="birthyear">
-                </select>
-            </section>
-            
-        </section>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="Ejem: (+34)922123123" required />
+                        </div>
+                        <div class="grupo">
+                            <label for="codigo-postal">Código Postal</label>
+                            <input type="number" id="codigo-postal" name="codigo-postal" placeholder="38XXX" required />
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="dni">DNI/NIE</label>
+                            <div style="display: flex; align-items: center; gap: 10px">
+                                <select id="dni" name="tipo-dni" required>
+                                    <option value="" disabled selected>--</option>
+                                    <option value="dni">DNI</option>
+                                    <option value="nie">NIE</option>
+                                </select>
+                                <input type="number" id="numero-dni" name="numero-dni" placeholder="Número" required/>
+                            </div>
+                        </div>
+                        <div class="grupo">
+                            <label>Crear cuenta como:</label>
+                            <div>
+                                <input type="radio" id="particular" name="tipo-cuenta" value="particular"/>
+                                <label for="particular">Particular</label>
+                                <input type="radio" id="empresa" name="tipo-cuenta" value="empresa" />
+                                <label for="empresa">Empresa</label>
+                            </div>
+                        </div>
+                        <div class="grupo">
+                            <label for="ano-nacimiento">Año de Nacimiento</label>
+                            <input type="date" id="ano-nacimiento" name="ano-nacimiento" required/>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="form-field">
-            <label>Crear cuenta como:</label>
-            <input type="radio" id="particular" name="account_type" value="particular">
-            <label for="particular">Particular</label>
-            <input type="radio" id="empresa" name="account_type" value="empresa">
-            <label for="empresa">Empresa</label>
-        </section>
+                <section>
+                    <legend>Aficiones</legend>
+                    <div class="grupo">
+                        <label>Elige tus aficiones:</label>
+                        <div class="grupo-checkbox">
+                            <input type="checkbox" id="musica" name="aficiones[]" value="musica" />Música
+                            <input type="checkbox" id="deporte" name="aficiones[]" value="deporte" />Deporte
+                            <input type="checkbox" id="videojuegos" name="aficiones[]" value="videojuegos" />Videojuegos
+                            <input type="checkbox" id="manualidades" name="aficiones[]" value="manualidades" />Manualidades
+                            <input type="checkbox" id="artes" name="aficiones[]" value="artes" />Artes
+                            <input type="checkbox" id="lectura" name="aficiones[]" value="lectura" />Lectura
+                        </div>
+                    </div>
+                </section>
 
-        <label>Elige tus aficiones:</label>
-        <section class="aficiones">
-            <input type="checkbox" id="musica" name="hobbies" value="musica">
-            <label for="musica">Música</label>
-            <input type="checkbox" id="deporte" name="hobbies" value="deporte">
-            <label for="deporte">Deporte</label>
-            <input type="checkbox" id="videojuegos" name="hobbies" value="videojuegos">
-            <label for="videojuegos">Videojuegos</label>
-            <input type="checkbox" id="manualidades" name="hobbies" value="manualidades">
-            <label for="manualidades">Manualidades</label>
-            <input type="checkbox" id="artes" name="hobbies" value="artes">
-            <label for="artes">Artes</label>
-            <input type="checkbox" id="lectura" name="hobbies" value="lectura">
-            <label for="lectura">Lectura</label>
-        </section>
-
-        <p>Datos Publicación</p>
-        <section class="form-section">
-            <section class="form-field">
-                <label for="title">Título:</label>
-                <input type="text" id="title" name="title" maxlength="15">
-            </section>
-            <section class="form-field">
-                <label for="description">Descripción:</label>
-                <textarea id="description" name="description" maxlength="120"></textarea>
-            </section>
-        </section>
-
-        <button type="submit">Enviar</button>
-    </form>
-
-    <script>
-        function showPassword() {
-            var x = document.getElementById("password");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
+                <section>
+                    <legend>Datos Publicación</legend>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="titulo-publicacion">Título</label>
+                            <input type="text" id="titulo-publicacion" name="titulo-publicacion" maxlength="15" placeholder="Título" required/>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="descripcion-publicacion">Descripción</label>
+                            <textarea id="descripcion-publicacion" name="descripcion-publicacion" maxlength="120" placeholder="Descripción" required></textarea>
+                        </div>
+                    </div>
+                </section>
+                <footer class="formulario-footer">
+                    <button type="submit">Enviar</button>
+                </footer>
+            </fieldset>
+        </form>
+    </main>
+    <script src="./scripts.js"></script>
 </body>
 
 </html>
