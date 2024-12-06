@@ -1,53 +1,86 @@
-// Definir el objeto DOM para centralizar el acceso a los elementos del formulario
-const DOM = {
-    formulario: document.getElementById("formulario-registro"),
-    passwordInput: document.getElementById("contrasena"),
-    mostrarContrasenaCheckbox: document.getElementById("mostrar-contrasena"),
-    tipoCuentaRadios: document.querySelectorAll('input[name="tipo-cuenta"]'),
-    aficionesCheckboxes: document.querySelectorAll('input[name="aficiones[]"]'),
-};
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("formulario-registro");
+    const mostrarContrasenaCheckbox = document.getElementById("mostrar-contrasena");
+    const inputContrasena = document.getElementById("contrasena");
+    const aficionesWrapper = document.getElementById("aficiones-wrapper");
+    const aficionesCheckboxes = document.querySelectorAll('input[name="Aficiones"]');
+    const mensajeErrorAficiones = document.querySelector(".mensaje-error");
 
-// Función para mostrar/ocultar la contraseña
-const togglePasswordVisibility = () => {
-    DOM.mostrarContrasenaCheckbox.addEventListener("change", () => {
-        DOM.passwordInput.type = DOM.mostrarContrasenaCheckbox.checked ? "text" : "password";
+    // Mostrar u ocultar contraseña
+    mostrarContrasenaCheckbox.addEventListener("change", () => {
+        inputContrasena.type = mostrarContrasenaCheckbox.checked ? "text" : "password";
     });
-};
 
-// Función para validar que se ha seleccionado una opción en "Crear cuenta como"
-const validateTipoCuenta = () => {
-    const tipoCuentaSeleccionado = Array.from(DOM.tipoCuentaRadios).some(radio => radio.checked);
-    if (!tipoCuentaSeleccionado) {
-        alert("Por favor, selecciona una opción en 'Crear cuenta como'.");
-        return false;
-    }
-    return true;
-};
+    // Configurar las reglas de validación personalizadas
+    const setValidationMessage = () => {
+        // Validar contraseña
+        if (!/^\d{8}$/.test(inputContrasena.value)) {
+            inputContrasena.setCustomValidity("La contraseña debe ser exactamente 8 dígitos numéricos.");
+        } else {
+            inputContrasena.setCustomValidity("");
+        }
 
-// Función para validar que se ha seleccionado al menos una afición
-const validateAficiones = () => {
-    const aficionSeleccionada = Array.from(DOM.aficionesCheckboxes).some(checkbox => checkbox.checked);
-    if (!aficionSeleccionada) {
-        alert("Por favor, selecciona al menos una afición.");
-        return false;
-    }
-    return true;
-};
+        // Validar DNI/NIE
+        const tipoDocumento = document.getElementById("tipo-documento").value;
+        const numeroDNI = document.getElementById("numero-dni");
 
-// Función para validar el formulario
-const validateForm = (event) => {
-    if (!validateTipoCuenta() || !validateAficiones()) {
-        event.preventDefault(); // Evitar el envío del formulario si las validaciones fallan
-    }
-};
+        if (tipoDocumento === "dni" && !/^\d{8}[A-Z]$/.test(numeroDNI.value)) {
+            numeroDNI.setCustomValidity("El DNI debe tener 8 números y una letra mayúscula.");
+        } else if (tipoDocumento === "nie" && !/^[XYZ]\d{7}[A-Z]$/.test(numeroDNI.value)) {
+            numeroDNI.setCustomValidity("El NIE debe comenzar con X, Y o Z seguido de 7 números y una letra.");
+        } else {
+            numeroDNI.setCustomValidity("");
+        }
 
-// Configuración inicial
-const init = () => {
-    togglePasswordVisibility(); // Mostrar/ocultar la contraseña
+        // Validar aficiones (debe haber al menos dos seleccionadas)
+        const seleccionadas = Array.from(aficionesCheckboxes).filter((checkbox) => checkbox.checked);
+        if (seleccionadas.length < 2) {
+            mensajeErrorAficiones.textContent = "Debe seleccionar al menos dos aficiones.";
+            aficionesWrapper.setCustomValidity("Debe seleccionar al menos dos aficiones.");
+        } else {
+            mensajeErrorAficiones.textContent = "";
+            aficionesWrapper.setCustomValidity("");
+        }
+    };
 
-    // Validación del formulario al enviar
-    DOM.formulario.addEventListener("submit", validateForm);
-};
+    // Mostrar mensajes de error junto al campo correspondiente
+    const actualizarMensajes = () => {
+        const elementos = form.querySelectorAll("input, select, #aficiones-wrapper");
 
-// Ejecutar cuando el DOM esté cargado
-document.addEventListener("DOMContentLoaded", init);
+        elementos.forEach((elemento) => {
+            const mensajeExistente = elemento.nextElementSibling;
+            if (mensajeExistente && mensajeExistente.classList.contains("error-mensaje")) {
+                mensajeExistente.remove(); // Limpiar mensajes previos
+            }
+
+            if (!elemento.checkValidity()) {
+                const error = document.createElement("span");
+                error.textContent = elemento.validationMessage;
+                error.classList.add("error-mensaje");
+                elemento.insertAdjacentElement("afterend", error);
+            }
+        });
+    };
+
+    // Validar formulario al enviar
+    form.addEventListener("submit", (event) => {
+        setValidationMessage();
+        actualizarMensajes();
+        if (!form.checkValidity()) {
+            event.preventDefault(); // Evitar envío si hay errores
+        } else {
+            alert("Formulario enviado correctamente.");
+        }
+    });
+
+    // Validar dinámicamente al escribir o cambiar
+    form.addEventListener("input", () => {
+        setValidationMessage();
+        actualizarMensajes();
+    });
+
+    form.addEventListener("change", () => {
+        setValidationMessage();
+        actualizarMensajes();
+    });
+});

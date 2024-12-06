@@ -9,123 +9,137 @@
 </head>
 
 <body>
-    <main>
-        <form id="formulario-registro" action="https://www.w3schools.com/action_page.php/" method="post">
-            <fieldset class="formulario-contenedor">
-                <section>
-                    <legend>Datos Usuario</legend>
-                    <div class="fila">
-                        <div class="grupo">
-                            <label for="nombre-usuario">Nombre de Usuario</label>
-                            <input type="text" id="nombre-usuario" name="NombreUsuario" placeholder="Nombre" required />
-                            <p class="obligatorio">Campo obligatorio</p>
-                        </div>
-                        <div class="grupo">
-                            <label for="contrasena">Contraseña</label>
-                            <input type="password" id="contrasena" name="Contrasena" placeholder="Introduce Contraseña" required />
-                            <p class="obligatorio">Campo obligatorio</p>
-                            <div class="mostrar-contrasena">
-                                <input type="checkbox" id="mostrar-contrasena" name="mostrar-contrasena" />
-                                <label for="mostrar-contrasena">Mostrar Contraseña</label>
+    <main class="contenedor">
+        <section class="parte-izquierda">
+            <form id="formulario-registro" action="https://www.w3schools.com/action_page.php/" method="post">
+                <fieldset class="formulario-contenedor">
+                    <legend>Formulario · DEW · UT04-02</legend>
+                    <section>
+                        <legend>Datos Usuario</legend>
+                        <div class="fila">
+                            <div class="grupo">
+                                <label for="nombre-usuario">Nombre de Usuario</label>
+                                <input type="text" id="nombre-usuario" name="NombreUsuario" placeholder="Nombre" minlength="4" maxlength="20" required />
+                                <p class="mensaje-error">El nombre de Usuario es obligatorio</p>
+                            </div>
+                            <div class="grupo">
+                                <label for="contrasena">Contraseña</label>
+                                <input type="password" id="contrasena" name="Contrasena" placeholder="Introduce Contraseña" pattern="\d{8}" required />
+                                <p class="mensaje-error">La Contraseña es obligatoria</p>
+                                <div class="mostrar-contrasena">
+                                    <input type="checkbox" id="mostrar-contrasena" />
+                                    <label for="mostrar-contrasena">Mostrar Contraseña</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section>
-                    <legend>Datos Personales</legend>
-                    <div class="fila">
-                        <div class="grupo">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="Nombre" placeholder="Nombre" required />
-                            <p class="obligatorio">Campo obligatorio</p>
-                        </div>
-                        <div class="grupo">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" id="apellidos" name="Apellidos" placeholder="Apellidos" required />
-                            <p class="obligatorio">Campo obligatorio</p>
-                        </div>
-                    </div>
-                    <div class="fila">
-                        <div class="grupo">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="Telefono" placeholder="Ejem: (+34)922123123" required />
-                            <p class="obligatorio">Campo obligatorio</p>
-                        </div>
-                        <div class="grupo">
-                            <label for="codigo-postal">Código Postal</label>
-                            <input type="number" id="codigo-postal" name="CodigoPostal" placeholder="38XXX" required />
-                            <p class="obligatorio">Campo obligatorio</p>
-                        </div>
-                    </div>
-                    <div class="fila">
-                        <div class="grupo">
-                            <label for="dni">DNI/NIE</label>
-                            <div style="display: flex; align-items: center; gap: 10px">
-                                <select id="dni" name="TipoDocumento" required>
-                                    <option value="" disabled selected>--</option>
-                                    <option value="dni">DNI</option>
-                                    <option value="nie">NIE</option>
-                                </select>
-                                <input type="number" id="numero-dni" name="DniNie" placeholder="Número" required/>
+                    <section>
+                        <legend>Datos Personales</legend>
+                        <div class="fila">
+                            <div class="grupo">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="Nombre" placeholder="Nombre" minlength="4" maxlength="20" required />
+                                <p class="mensaje-error">El Nombre es obligatorio</p>
+                            </div>
+                            <div class="grupo">
+                                <label for="apellidos">Apellidos</label>
+                                <input type="text" id="apellidos" name="Apellidos" placeholder="Apellidos" minlength="4" maxlength="20" required />
+                                <p class="mensaje-error">Los Apellidos son obligatorios</p>
                             </div>
                         </div>
-                        <div class="grupo">
-                            <label>Crear cuenta como:</label>
-                            <div>
-                                <input type="radio" id="particular" name="CuentaComo" value="particular"/>
-                                <label for="particular">Particular</label>
-                                <input type="radio" id="empresa" name="CuentaComo" value="empresa" />
-                                <label for="empresa">Empresa</label>
+                        <div class="fila">
+                            <div class="grupo">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="Telefono" placeholder="(+34)922123123" pattern="\(\+34\)\d{9}" required />
+                                <p class="mensaje-error">El Telefono es obligatorio</p>
+                            </div>
+                            <div class="grupo">
+                                <label for="codigo-postal">Código Postal</label>
+                                <input type="text" id="codigo-postal" name="CodigoPostal" pattern="38\d{3}" required />
+                                <p class="mensaje-error">El codigo Postal es obligatorio</p>
                             </div>
                         </div>
-                        <div class="grupo">
-                            <label for="ano-nacimiento">Año de Nacimiento</label>
-                            <input type="date" id="ano-nacimiento" name="AnioNacimiento" required/>
-                            <p class="obligatorio">Campo obligatorio</p>
+                        <div class="fila">
+                            <div class="grupo">
+                                <label for="dni">DNI/NIE</label>
+                                <div>
+                                    <select id="tipo-documento" name="TipoDocumento" required>
+                                        <option value="" disabled selected>--</option>
+                                        <option value="dni">DNI</option>
+                                        <option value="nie">NIE</option>
+                                    </select>
+                                    <input type="text" id="numero-dni" name="DniNie" placeholder="Número" required />
+                                    <p class="mensaje-error">El DNI/NIE es obligatorio</p>
+                                </div>
+                            </div>
+                            <div class="grupo">
+                                <label>Crear cuenta como:</label>
+                                <div>
+                                    <input type="radio" id="particular" name="CuentaComo" value="Particular" required />
+                                    <label for="particular">Particular</label>
+                                    <input type="radio" id="empresa" name="CuentaComo" value="Empresa" required />
+                                    <label for="empresa">Empresa</label>
+                                </div>
+                            </div>
+                            <div class="grupo">
+                                <label for="ano-nacimiento">Año de Nacimiento</label>
+                                <input type="number" id="ano-nacimiento" name="AnioNacimiento" min="1920" max="2010" required />
+                                <p class="mensaje-error">El Año de nacimiento es obligatorio</p>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section>
-                    <legend>Aficiones</legend>
-                    <div class="grupo">
-                        <label>Elige tus aficiones:</label>
-                        <div class="grupo-checkbox">
-                            <input type="checkbox" id="musica" name="Aficiones" value="musica" />Música
-                            <input type="checkbox" id="deporte" name="Aficiones" value="deporte" />Deporte
-                            <input type="checkbox" id="videojuegos" name="Aficiones" value="videojuegos" />Videojuegos
-                            <input type="checkbox" id="manualidades" name="Aficiones" value="manualidades" />Manualidades
-                            <input type="checkbox" id="artes" name="Aficiones" value="artes" />Artes
-                            <input type="checkbox" id="lectura" name="Aficiones" value="lectura" />Lectura
+                    <section>
+                        <legend>Aficiones</legend>
+                        <div class="grupo-checkbox" id="aficiones-wrapper">
+                            <label>
+                                <input type="checkbox" name="Aficiones" value="MU" /> Música
+                            </label>
+                            <label>
+                                <input type="checkbox" name="Aficiones" value="DE" /> Deporte
+                            </label>
+                            <label>
+                                <input type="checkbox" name="Aficiones" value="VI" /> Videojuegos
+                            </label>
+                            <label>
+                                <input type="checkbox" name="Aficiones" value="MA" /> Manualidades
+                            </label>
+                            <label>
+                                <input type="checkbox" name="Aficiones" value="AR" /> Artes
+                            </label>
+                            <label>
+                                <input type="checkbox" name="Aficiones" value="LE" /> Lectura
+                            </label>
                         </div>
-                    </div>
-                </section>
+                        <p class="mensaje-error"></p>
+                    </section>
 
-                <section>
-                    <legend>Datos Publicación</legend>
-                    <div class="fila">
-                        <div class="grupo">
-                            <label for="titulo-publicacion">Título</label>
-                            <input type="text" id="titulo-publicacion" name="PublicacionTitulo" maxlength="15" placeholder="Título" required/>
-                            <p class="obligatorio">Campo obligatorio</p>
+                    <section>
+                        <legend>Datos Publicación</legend>
+                        <div class="fila">
+                            <div class="grupo">
+                                <label for="titulo-publicacion">Título</label>
+                                <input type="text" id="titulo-publicacion" name="PublicacionTitulo" minlength="4" maxlength="15" required />
+                                <p class="mensaje-error">El Titulo es obligatorio</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="fila">
-                        <div class="grupo">
-                            <label for="descripcion-publicacion">Descripción</label>
-                            <textarea id="descripcion-publicacion" name="PublicacionDescripcion" maxlength="120" placeholder="Descripción" required></textarea>
-                            <p class="obligatorio">Campo obligatorio</p>
+                        <div class="fila">
+                            <div class="grupo">
+                                <label for="descripcion-publicacion">Descripción</label>
+                                <textarea id="descripcion-publicacion" name="PublicacionDescripcion" minlength="4" maxlength="120" required></textarea>
+                                <p class="mensaje-error">La Descripción es obligatoria</p>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                <footer class="formulario-footer">
+                    </section>
                     <button type="submit">Enviar</button>
-                </footer>
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </section>
+
+        <section class="parte-derecha" id="estado-mensajes"></section>
     </main>
-    <script src="./scripts.js"></script>
+    <script src="./scripts.js" type="module"></script>
 </body>
 
 </html>
