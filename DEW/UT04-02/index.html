@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario DEW UT04-01</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <main>
+        <form id="formulario-registro" action="https://www.w3schools.com/action_page.php/" method="post">
+            <fieldset class="formulario-contenedor">
+                <section>
+                    <legend>Datos Usuario</legend>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="nombre-usuario">Nombre de Usuario</label>
+                            <input type="text" id="nombre-usuario" name="NombreUsuario" placeholder="Nombre" required />
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                        <div class="grupo">
+                            <label for="contrasena">Contraseña</label>
+                            <input type="password" id="contrasena" name="Contrasena" placeholder="Introduce Contraseña" required />
+                            <p class="obligatorio">Campo obligatorio</p>
+                            <div class="mostrar-contrasena">
+                                <input type="checkbox" id="mostrar-contrasena" name="mostrar-contrasena" />
+                                <label for="mostrar-contrasena">Mostrar Contraseña</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <legend>Datos Personales</legend>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="Nombre" placeholder="Nombre" required />
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                        <div class="grupo">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" id="apellidos" name="Apellidos" placeholder="Apellidos" required />
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="Telefono" placeholder="Ejem: (+34)922123123" required />
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                        <div class="grupo">
+                            <label for="codigo-postal">Código Postal</label>
+                            <input type="number" id="codigo-postal" name="CodigoPostal" placeholder="38XXX" required />
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="dni">DNI/NIE</label>
+                            <div style="display: flex; align-items: center; gap: 10px">
+                                <select id="dni" name="TipoDocumento" required>
+                                    <option value="" disabled selected>--</option>
+                                    <option value="dni">DNI</option>
+                                    <option value="nie">NIE</option>
+                                </select>
+                                <input type="number" id="numero-dni" name="DniNie" placeholder="Número" required/>
+                            </div>
+                        </div>
+                        <div class="grupo">
+                            <label>Crear cuenta como:</label>
+                            <div>
+                                <input type="radio" id="particular" name="CuentaComo" value="particular"/>
+                                <label for="particular">Particular</label>
+                                <input type="radio" id="empresa" name="CuentaComo" value="empresa" />
+                                <label for="empresa">Empresa</label>
+                            </div>
+                        </div>
+                        <div class="grupo">
+                            <label for="ano-nacimiento">Año de Nacimiento</label>
+                            <input type="date" id="ano-nacimiento" name="AnioNacimiento" required/>
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <legend>Aficiones</legend>
+                    <div class="grupo">
+                        <label>Elige tus aficiones:</label>
+                        <div class="grupo-checkbox">
+                            <input type="checkbox" id="musica" name="Aficiones" value="musica" />Música
+                            <input type="checkbox" id="deporte" name="Aficiones" value="deporte" />Deporte
+                            <input type="checkbox" id="videojuegos" name="Aficiones" value="videojuegos" />Videojuegos
+                            <input type="checkbox" id="manualidades" name="Aficiones" value="manualidades" />Manualidades
+                            <input type="checkbox" id="artes" name="Aficiones" value="artes" />Artes
+                            <input type="checkbox" id="lectura" name="Aficiones" value="lectura" />Lectura
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <legend>Datos Publicación</legend>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="titulo-publicacion">Título</label>
+                            <input type="text" id="titulo-publicacion" name="PublicacionTitulo" maxlength="15" placeholder="Título" required/>
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="grupo">
+                            <label for="descripcion-publicacion">Descripción</label>
+                            <textarea id="descripcion-publicacion" name="PublicacionDescripcion" maxlength="120" placeholder="Descripción" required></textarea>
+                            <p class="obligatorio">Campo obligatorio</p>
+                        </div>
+                    </div>
+                </section>
+                <footer class="formulario-footer">
+                    <button type="submit">Enviar</button>
+                </footer>
+            </fieldset>
+        </form>
+    </main>
+    <script src="./scripts.js"></script>
+</body>
+
+</html>

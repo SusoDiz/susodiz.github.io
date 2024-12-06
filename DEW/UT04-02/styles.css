@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 2vh;
+    background-color: #f9f9f9;
+}
+
+.formulario-contenedor {
+    width: 50%;
+    margin: auto;
+    padding: 2em;
+    background: white;
+    border: 0.2em solid #333;
+    border-radius: 1em;
+}
+
+legend {
+    margin-bottom: 1.5em;
+    font-size: 1.2em;
+    border-bottom: 0.15em solid #333;
+    padding-bottom: 0.5em;
+}
+
+.fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    margin-bottom: 1.5em;
+}
+
+.grupo {
+    flex: 1;
+}
+
+label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.8em;
+    font-size: 0.9em;
+    border: 0.1em solid #ccc;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: none;
+    height: 8em;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 0.5em;
+}
+
+.grupo-checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.mostrar-contrasena {
+    margin-top: 0.5em;
+}
+
+input:invalid,
+textarea:invalid {
+    border: 0.2em solid red;
+    background-color: rgba(255, 0, 0, 0.10);
+}
+
+.obligatorio {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0em;
+}
+
+input:valid ~ .obligatorio,
+textarea:valid ~ .obligatorio {
+    visibility: hidden;
+}
+
+input:valid,
+textarea:valid {
+    border: 0.2em solid green;
+    background-color: rgba(0, 255, 0, 0.10);
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 1em 1.5em;
+    border: none;
+    border-radius: 0.4em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
